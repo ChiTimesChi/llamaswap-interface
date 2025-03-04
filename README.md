@@ -46,6 +46,7 @@ But if you'd prefer to instead integrate through our API please contact @0xngmi 
 ### Running the app locally
 
 ```
+nvm use
 yarn install
 yarn dev
 ```
