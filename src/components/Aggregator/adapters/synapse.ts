@@ -16,28 +16,18 @@ export function approvalAddress() {
 	return '0x018396706193B16F8a1b20B87B2dcC840979D7EA';
 }
 
-export async function getQuote(
-	chain: string,
-	from: string,
-	to: string,
-	amount: string,
-	{ fromToken, toToken, userAddress, slippage }
-) {
-	// Convert amount from wei to human-readable, e.g. 1000000 -> 1.0
-	const amountHumanReadable = new BigNumber(amount).dividedBy(new BigNumber(10).pow(fromToken.decimals)).toFixed();
-	const requestURL = `${API_URL}/swapV2?chain=${chainToId[chain]}&fromToken=${from}&toToken=${to}&amount=${amountHumanReadable}&address=${userAddress}&slippage=${slippage}`;
+export async function getQuote(chain: string, from: string, to: string, amount: string, { userAddress, slippage }) {
+	const requestURL = `${API_URL}/swap/v2?chain=${chainToId[chain]}&fromToken=${from}&toToken=${to}&amount=${amount}&address=${userAddress}&slippage=${slippage}`;
 	console.log(requestURL);
 	const data = await fetch(requestURL).then((r) => r.json());
 	if (data.error) {
 		throw new Error(data.error);
 	}
-	// Convert maxAmountOut from human-readable to wei, e.g. 1.0 -> 1000000
-	const amountOut = new BigNumber(data.maxAmountOut).times(new BigNumber(10).pow(toToken.decimals)).toFixed();
 	if (data.callData) {
 		data.callData.value = new BigNumber(data.callData.value?.hex || '0');
 	}
 	return {
-		amountReturned: amountOut,
+		amountReturned: data.maxAmountOut,
 		estimatedGas: 0,
 		tokenApprovalAddress: approvalAddress(),
 		rawQuote: data.callData || {}
