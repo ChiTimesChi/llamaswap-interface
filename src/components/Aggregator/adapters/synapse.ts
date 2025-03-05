@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 import { sendTx } from '../utils/sendTx';
 
 // TODO: figure out why .env approach doesn't work
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://bridge-api-staging-swap-v2.up.railway.app';
 
 export const name = 'Synapse';
 export const token = 'SYN';
