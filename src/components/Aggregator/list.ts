@@ -16,10 +16,11 @@ import * as odos from './adapters/odos';
 // import * as llamazip from './adapters/llamazip';
 // import * as krystal from './adapters/krystal'
 import * as matchaGasless from './adapters/0xGasless';
+import * as synapse from './adapters/synapse';
 
-export const adapters = [matcha, cowswap, paraswap, kyberswap, inch, matchaGasless, odos];
+export const adapters = [matcha, cowswap, paraswap, kyberswap, inch, matchaGasless, odos, synapse];
 
-export const inifiniteApprovalAllowed = [matcha.name, cowswap.name, matchaGasless.name];
+export const inifiniteApprovalAllowed = [matcha.name, cowswap.name, matchaGasless.name, synapse.name];
 
 export const adaptersWithApiKeys = {
 	[matcha.name]: true,
