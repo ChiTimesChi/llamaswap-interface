@@ -30,7 +30,7 @@ export async function getQuote(chain: string, from: string, to: string, amount: 
 		throw new Error(data.error);
 	}
 	if (data.callData) {
-		data.callData.value = new BigNumber(data.callData.value?.hex || '0');
+		data.callData.value = new BigNumber(data.callData.value || '0');
 	}
 	return {
 		amountReturned: data.maxAmountOut,
