@@ -8,12 +8,18 @@ export const name = 'Synapse';
 export const token = 'SYN';
 
 export const chainToId = {
+	arbitrum: 42161,
+	base: 8453,
+	blast: 81457,
+	bsc: 56,
+	ethereum: 1,
+	linea: 59144,
 	optimism: 10,
-	arbitrum: 42161
+	scroll: 534352
 };
 
 export function approvalAddress() {
-	return '0x018396706193B16F8a1b20B87B2dcC840979D7EA';
+	return '0x0000000051250060EEC6bc1Bd37dC3eF30c9be25';
 }
 
 export async function getQuote(chain: string, from: string, to: string, amount: string, { userAddress, slippage }) {
